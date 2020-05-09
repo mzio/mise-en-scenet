@@ -47,15 +47,11 @@ class MovieDataset(Dataset):
         return self.df.shape[0]
 
     def __getitem__(self, ix):
-        try:
-            data_row = self.df.iloc[ix]
-            images = [self.load_img(data_row, frame_ix)
-                      for frame_ix in self.frames_headers]
-            images = np.stack(images)
-            label = self.load_label(data_row)
-        except:
-            if ix + 1 < self.df.shape[0]:
-                return self.__getitem__(ix + 1)
+        data_row = self.df.iloc[ix]
+        images = [self.load_img(data_row, frame_ix)
+                  for frame_ix in self.frames_headers]
+        images = np.stack(images)
+        label = self.load_label(data_row)
         return images, label
 
     def load_data(self):

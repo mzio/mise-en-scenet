@@ -40,6 +40,7 @@ def train(model, vgg, dataloader, criterion, optimizer, epoch, gram_ix=2):
 
 def evaluate(model, vgg, dataloader, criterion, epoch, gram_ix=2, split='Val'):
     model.eval()
+    running_loss = 0.
     with torch.no_grad():
         total_correct = 0.
         for batch_ix, (data, labels) in enumerate(tqdm(dataloader)):
