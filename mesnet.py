@@ -11,7 +11,7 @@ from args import args
 
 if __name__ == "__main__":
 
-    torch.manual_seed(args.seed)
+    # torch.manual_seed(args.seed)
     np.random.seed(args.seed)
 
     style_dims = [64, 128, 256, 512]
