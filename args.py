@@ -12,7 +12,7 @@ parser.add_argument('--frames_dir', default='./drive/My Drive/Harvard/4S20/GenEd
                     type=str, help="Directory where video frames are located")
 parser.add_argument('--videos_dir', default='./drive/My Drive/Harvard/4S20/GenEd 1049/final_project/uniform_scenes',
                     type=str, help="Directory where videos are located")
-parser.add_argument('--videos_dir', default='./drive/My Drive/Harvard/4S20/GenEd 1049/final_project/datasets',
+parser.add_argument('--datasets_dir', default='./drive/My Drive/Harvard/4S20/GenEd 1049/final_project/datasets',
                     type=str, help="Directory where CSV datasets are located")
 parser.add_argument('--batch_size', default=10, type=int,
                     help="Number of videos to load per batch")
