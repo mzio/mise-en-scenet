@@ -23,6 +23,8 @@ parser.add_argument('--epochs', default=10, type=int,
                     help="Number of training epochs")
 parser.add_argument('--log_frequency', default=100, type=int,
                     help="Number batches to run before logging training / evaluation metrics")
+parser.add_argument('--dropout', default=0.5, type=float,
+                    help="Dropout frequency to prevent overfitting")
 # Style
 parser.add_argument('--gram_ix', default=2, type=int,
                     help="Layer of style VGG to use for gram style calculation")
@@ -31,5 +33,15 @@ parser.add_argument('--label_type', default='director', type=str,
                     help="Which groundtruth labels to load ('director', 'genre')")
 parser.add_argument('--dataset_type', default='frames', type=str,
                     help="Whether to load dataset by frames or video ('frames', 'videos')")
+parser.add_argument('--model_type', default='vgg-pretrained', type=str,
+                    help="What the model should be")
+parser.add_argument('--load_model', default=False, action='store_true',
+                    help="Whether to load previous model")
+parser.add_argument('--load_model_epochs', default=None, type=int,
+                    help="Which previous model to load")
+
+# Evaluation
+parser.add_argument('--eval', default=False, action='store_true'
+                    help="If true, load pre-trained model and save embedding vectors")
 
 args = parser.parse_args()

@@ -135,7 +135,8 @@ class MovieFrameDataset(Dataset):
             director_ix = self.directors.index(data_row['director'])
             return torch.tensor(director_ix, dtype=torch.long)
         elif self.label_type == 'genre':
-            return torch.tensor(data_row[genres], dtype=torch.long)
+            #  print(torch.tensor(data_row[genres], dtype=torch.long))
+            return torch.tensor(data_row[self.genres], dtype=torch.float)
         
     def get_director(self, ix):
         return self.directors[ix]
