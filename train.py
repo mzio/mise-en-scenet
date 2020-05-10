@@ -110,8 +110,8 @@ def evaluate(model, vgg, dataloader, criterion, epoch, gram_ix=2, split='Val', s
                     save_dict['video'].append(data_row['video'])
                     save_dict['movie'].append(data_row['movie'])
                     save_dict['director'].append(data_row['director'])
-                    for ex, embedding in enumerate(range(embeddings.shape[1])):
-                        save_dict[f'e_{ex}'].append(embedding)
+                    for ex in range(embeddings.shape[1]):
+                        save_dict[f'e_{ex}'].append(embeddings[ix][ex])
                     for genre in genres:
                         save_dict[genre].append(data_row[genre])
                 
