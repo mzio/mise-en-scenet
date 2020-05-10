@@ -4,6 +4,7 @@ VGG16 for gram style and content embeddings and fully-connected encoder models
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 from torchvision import models
 from collections import namedtuple
@@ -81,3 +82,75 @@ class Encoder(nn.Module):
         x = torch.cat((x1, x2), dim=1)
         x = self.features(x)
         return x
+
+
+class BasicOneNet(nn.Module):
+    def __init__(self, num_classes):
+        super(BasicOneNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 224 * 224, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, num_classes)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 16 * 224 * 224)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+
+class BasicNet(nn.Module):
+    def __init__(self, num_classes, in_channels=1):
+        super(BasicNet, self).__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(in_channels, 64, 3),
+            nn.BatchNorm2d(64, momentum=1, affine=True),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(64, 64, 3),
+            nn.BatchNorm2d(64, momentum=1, affine=True),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(64, 64, 3),
+            nn.BatchNorm2d(64, momentum=1, affine=True),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, 2)
+        )
+        self.fc1 = nn.Linear(43264, 4096)
+        self.fc2 = nn.Linear(4096, 1024)
+        self.fc3 = nn.Linear(1024, 120)
+        self.fc4 = nn.Linear(120, num_classes)
+        self.drop = nn.Dropout(p=0.5)
+
+    def forward(self, x):
+        x = self.features(x)
+        # print(x.shape)
+        x = torch.flatten(x, 1)
+        x = F.relu(self.fc1(x))
+        x = self.drop(x)
+        x = F.relu(self.fc2(x))
+        x = self.drop(x)
+        x = F.relu(self.fc3(x))
+        x = self.drop(x)
+        # print(x.shape)
+        # x = x.view(-1, 64)
+        x = self.fc4(x)
+        # print(x.shape)
+        return x
+
+    def embed(self, x):
+        x = self.features(x)
+        # print(x.shape)
+        x = torch.flatten(x, 1)
+        x = F.relu(self.fc1(x))
+        x = self.drop(x)
+        x = F.relu(self.fc2(x))
+        x = self.drop(x)
+        x = self.fc3(x)
+        return x
+
