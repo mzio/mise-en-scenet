@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="GenEd 1049: East Asian Cinemas Final Project">
+  <meta name="author" content="Michael Zhang">
+  <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+  <title>Mise-en-scène with Machine Learning</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="album.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Add some information about the album below, the author, or any other background
+              context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off
+              to some social networking sites or contact information.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+          <strong>Album</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Identifying Mise-en-scène through Machine Learning</h1>
+        <p class="lead text-muted">A computer-aided approach to discovering the iconic elements of mise-en-scène across
+          film directors and genres.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="text-left">
+      <div class="container">
+        <h3>Introduction</h3>
+        <p>
+          In film analysis, a scene's <i>mise-en-scène</i> and cinematography - or anything a director can do to help
+          stage a scene and how he or she shoots a shot - play a significant role in conveying a larger message beyond
+          the explicit plot of a shot. These
+          deliberately chosen elements such as shot depth, colors, lighting, and camera movement can go a
+          long way in conveying a
+          director's specific vision for a scene. While these artistic choices often play a subliminal role in
+          determining how we react and why we feel a certain way in regard to watching a film, as audience members
+          we can also explicitly analyze these shots to get a greater understanding of a director's intended message.
+          In fact, one of the most powerful examples of how these visual elements underlie effective visual storytelling
+          lies
+          in its potential association with the larger aspect of a film's uniqueness and overall genre.
+          Even if we do not know the exact plot of a film sequence, the frenzied, dynamic shots of an
+          action clip can distinguish itself from the more slow and somber stills of a drama. Along
+          another dimension, because mise-en-scène and a film's visual language can play such a large role in getting
+          a director's message across, we can imagine that it might be possible to determine a scene's director just
+          from the visual information contained in that scene alone. Just as authors might have
+          certain writing styles that become apparent across their prose, the countless visual depictions
+          that make up patterns throughout a film might be able to give away directors from their shots alone.
+        </p>
+        <p>
+          Through such analysis, it could be interesting to discover the iconic elements of directors that show up
+          most frequently or prominently in their work. To get at the latter, another interesting follow-up might be
+          to ask, given the ability to distinguish the directors of frames and scenes by visual information alone,
+          what is the most iconic 30 second shot of a two hour film? By explicitly analyzing these video clips we can
+          then hope to identify a bit of what makes a certain film feel a certain way.
+        </p>
+        <br>
+        <h4>Why use machine learning?</h4>
+        <p>
+          Unfortunately, as a college student definitely growing a deeper appreciation for film but no where close
+          to
+          being a veteran cinephile, identifying the visual elements of single video clip is hard enough. To
+          remember
+          these visual elements across an entire two-hour movie, and then figure out which ones are prominent enough
+          to distinguish a frame's director across a series of movies feels downright impossible. Luckily, this is
+          where <b>machine learning and artificial intelligence can come to the rescue</b>.
+        </p>
+        <p>
+          Briefly speaking, machine learning involves building computer algorithms that can learn to process
+          data in an intelligent manner on their own. Classic examples of related work involve learning to
+          distinguish pictures of cats and dogs, or identifying the right digit associated with a handwritten
+          number. Although
+          bad at higher level intelligence (e.g. following the plot of a movie from start to finish), these
+          algorithms
+          can excel in cases where they are strictly told to learn one thing and have large amount of data to
+          recognize patterns in. Because they can do all of this in an automated manner, this gives us a basis for
+          comparing a multitude of scenes both within and across different films.
+        </p>
+        <p>
+          Accordingly, using thirteen of the films screened in class, I first teach a machine learning
+          model to automatically identify a frame's director from the visual information or mise-en-scène alone.
+          Given these films, the model essentially pores over hundreds of shorter video clips sampled from the
+          larger movies, and slowly learns associations between the visual information present in the clip and the
+          fact that the clip was shot by a certain director. We can then identify the most "iconic" scenes by
+          looking
+          at the most recognizable scenes associated with each director according to the model. While as humans we
+          adopt certain
+          language to formalize and define these artistic visual choices, the model learns these
+          associations without knowledge of the definitions or connotations of elements such as lighting, color,
+          or shot type. Based on what the model has discovered from the ground-up using the visual pixel information
+          of the video frames, we then supplement these discoveries with our own interpretation of mise-en-scène.
+        </p>
+        <br>
+        <h3>Learning associations with mise-en-scène</h3>
+        <p>
+          As mentioned earlier, mise-en-scène can refer to <i>anything</i> that a director does to stage a scene and
+          capture a certain type of shot on camera. In this work, we focus however on the elements of mise-en-scène
+          capable of being captured from a single frame. As an example, we can take a look specifically at how
+          <i>lighting</i> and <i>color</i> play a role in setting up a shot.
+        </p>
+        <br>
+        <!-- <img src="" class="img-fluid" alt="Responsive image"> -->
+        <!-- <h4>Lighting</h4> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <!-- One of three columns -->
+            </div>
+            <div class="col-sm-6">
+              <figure class="figure">
+                <img src="./assets/images/scene-to_live-007-high_key_light.gif" class="figure-img img-fluid rounded"
+                  alt="To Live high-key natural lighting">
+                <figcaption class="figure-caption">Zhang Yimou's <i>To Live</i> (1994).</figcaption>
+              </figure>
+            </div>
+            <div class="col-sm-3">
+              <!-- One of three columns -->
+            </div>
+          </div>
+        </div>
+        <p>
+          As an example, in the above shot from Zhang Yimou's <i>To Live</i>, we can immediately note the natural
+          lighting and dusty brown color, courtesy of the environment Fugui finds himself in with regard to the gambling
+          den. This natural lighting and overarching but rather drab color scheme shows up in several additional shots,
+          where even colors that are distinctly supposed to be brighter seem to be muddled by natural shading and an
+          overarching brown. The lack of bright colors conveys a certain grunginess that comes not only with hardship
+          but especially one faced in an ordinary setting, where the difficulties of life have become the norm.
+        </p>
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-to_live-059-frame-021.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-to_live-062-frame-016.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-to_live-063-frame-023.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <figcaption class="figure-caption" style="text-align: center;">
+              Additional frames showcasing a predominant muted color scheme and natural lighting.
+            </figcaption>
+          </div>
+        </div>
+        <br>
+        <p>
+          In contrast, Wong Kar-wai's <i>Chungking Express</i> trades this color monotony for
+          pops of color. The lighting is still natural, but the exposure especially in the second half of the film
+          seems much more turned up. We can see the distinct blue and yellow of the second policeman and
+          Faye's shirts, along with various contrasting shades in the background. While the natural lighting gives some
+          indication that their lives are also ordinary, through the color there is a dream-like surrealism that goes
+          along with both the dramatic moody first half and more light-hearted second part of Chungking Express.
+        </p>
+        <br>
+        <!-- <img src="" class="img-fluid" alt="Responsive image"> -->
+        <!-- <h4>Lighting</h4> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <!-- One of three columns -->
+            </div>
+            <div class="col-sm-6">
+              <figure class="figure">
+                <img src="./assets/images/scene-chungking_express-030.gif" class="figure-img img-fluid rounded"
+                  alt="To Live high-key natural lighting">
+                <figcaption class="figure-caption"><i>Chungking Express</i> (1994).</figcaption>
+              </figure>
+            </div>
+            <div class="col-sm-3">
+              <!-- One of three columns -->
+            </div>
+          </div>
+        </div>
+        <!-- <p>
+          Again we can see similar more extreme variations of color throughout various frames.
+        </p> -->
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-chungking_express-015-frame-010.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-chungking_express-005-frame-555.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <div class="col-sm-4">
+              <img src="./assets/images/scene-chungking_express-025-frame-561.png" class="figure-img img-fluid rounded"
+                alt="To Live high-key natural lighting">
+            </div>
+            <figcaption class="figure-caption" style="text-align: center;">
+              Additional frames with more pronounced color variation amid some natural lighting source.
+            </figcaption>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
+                alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+      <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting
+          started guide</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="./assets/js/vendor/popper.min.js"></script>
+  <script src="./dist/js/bootstrap.min.js"></script>
+  <script src="./assets/js/vendor/holder.min.js"></script>
+</body>
+
+</html>
