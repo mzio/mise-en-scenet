@@ -82,7 +82,7 @@ def evaluate(model, vgg, dataloader, criterion, epoch, gram_ix=2, split='Val', s
                 outputs = model(encoding_means, gram_means[gram_ix])
             else:
                 outputs = model(data)
-            _, predictions = torch.max(outputs.data, 1)
+            values, predictions = torch.max(outputs.data, 1)
             if args.label_type == 'director':
                 total_correct += (predictions == labels).sum().item()
                 running_correct += (predictions == labels).sum().item()
@@ -110,6 +110,7 @@ def evaluate(model, vgg, dataloader, criterion, epoch, gram_ix=2, split='Val', s
                     save_dict['video'].append(data_row['video'])
                     save_dict['movie'].append(data_row['movie'])
                     save_dict['director'].append(data_row['director'])
+                    save_dict['score'].append(values[ix].detach().cpu().numpy())
                     for ex in range(embeddings.shape[1]):
                         save_dict[f'e_{ex}'].append(embeddings[ix][ex])
                     for genre in genres:

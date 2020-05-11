@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     old_epoch = 0
 
-    if args.load_model:
+    if args.load_model or args.eval:
         checkpoint = torch.load(PATH)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     if args.eval:
         embedding_name = f'embedding-{model_name[:-3]}.csv'  # .pt model file suffix
-        save_dict = {'frame': [], 'video': [], 'movie': [], 'director': []}
+        save_dict = {'frame': [], 'video': [], 'movie': [], 'director': [], 'score': []}
         for genre in genres:
             save_dict[genre] = []
         # Embeddings
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         # Save for all splits
         dataloader_test = load_movie_data(split='test', label_type=args.label_type, batch_size=args.batch_size)
         evaluate(model, vgg, dataloader_train, criterion, old_epoch, gram_ix=args.gram_ix,
-                 split='Train', save_dict=save_dict, genres=genres)
+                 split='Train', save_dict=save_dict, genres=genres) # , model_eval=False)
         evaluate(model, vgg, dataloader_val, criterion, old_epoch, gram_ix=args.gram_ix,
                  split='Val', save_dict=save_dict, genres=genres)
         evaluate(model, vgg, dataloader_test, criterion, old_epoch, gram_ix=args.gram_ix,
@@ -101,10 +101,11 @@ if __name__ == "__main__":
             model_name = model_name.split('-e=')[0] + '-e={}'.format(old_epoch + epoch)
             PATH = f'./models/{model_name}.pt'
             torch.save({
-                'epoch': args.epochs,
+                'epoch': epoch,
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
             }, PATH)
+            # torch.save(model.state_dict(), PATH[:-3] + '-eval.pt')
 
     model_name = model_name.split('-e=')[0] + '-e={}'.format(old_epoch + args.epochs)
     PATH = f'./models/{model_name}.pt'
@@ -113,3 +114,4 @@ if __name__ == "__main__":
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             }, PATH)
+    # torch.save(model.state_dict(), PATH[:-3] + '-eval.pt')

@@ -115,6 +115,8 @@ class MovieFrameDataset(Dataset):
 
     def __getitem__(self, ix):
         data_row = self.df.iloc[ix]
+        if 'crouching' in data_row['movie']:
+            print(data_row['movie'])
         image = self.load_img(data_row)
         label = self.load_label(data_row)
         return image, label
