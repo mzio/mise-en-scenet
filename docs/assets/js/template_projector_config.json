@@ -1,0 +1,13 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "My tensor",
+      "tensorShape": [
+        1000,
+        50
+      ],
+      "tensorPath": "https://raw.githubusercontent.com/mzio/mise-en-scenet/master/embeddings/embedding-model-director-s%3D42-lr%3D1e-05-bs%3D48-mt%3Dbasic-do%3D0.5-e%3D60.tsv",
+      "metadataPath": "https://raw.githubusercontent.com/mzio/mise-en-scenet/master/embeddings/embedding-model-director-s%3D42-lr%3D1e-05-bs%3D48-mt%3Dbasic-do%3D0.5-e%3D60-metadata.tsv"
+    }
+  ]
+}
