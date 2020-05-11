@@ -22,13 +22,13 @@ if __name__ == "__main__":
 
     model_name = f'model-{args.label_type}-s={args.seed}-lr={args.learning_rate}-bs={args.batch_size}-mt={args.model_type}-do={args.dropout}'
     if args.load_model:
-        model_name += '-e={}'.format(args.load_model_epochs)
+        model_name += '-e={}.pt'.format(args.load_model_epochs)
     else:
-        model_name += '-e={}'.format(args.epochs)
+        model_name += '-e={}.pt'.format(args.epochs)
 
     if args.model_name is not None and args.eval:
         model_name = args.model_name
-    PATH = f'./models/{model_name}.pt'
+    PATH = f'./models/{model_name}'
 
     # Possible classes
     directors = ['Akira Kurosawa', 'Ang Lee', 'Ang Lee', 'Cai Chusheng',
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     old_epoch = 0
 
-    if args.load_model:
+    if args.load_model or args.eval:
         checkpoint = torch.load(PATH)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -71,23 +71,27 @@ if __name__ == "__main__":
     dataloader_val = load_movie_data(split='val', label_type=args.label_type, batch_size=args.batch_size)
 
     if args.eval:
-        args.embedding_name = f'embedding-{model_name}.csv'
-        save_dict = {'frame': [], 'video': [], 'movie': [], 'director': []}
+        embedding_name = f'embedding-{model_name[:-3]}.csv'  # .pt model file suffix
+        save_dict = {'frame': [], 'video': [], 'movie': [], 'director': [], 'score': []}
         for genre in genres:
             save_dict[genre] = []
         # Embeddings
-        for edim in range(120)  # check BasicNet architecture for this
+        for edim in range(120):  # check BasicNet architecture for this
             save_dict[f'e_{edim}'] = []
         
         # Save for all splits
         dataloader_test = load_movie_data(split='test', label_type=args.label_type, batch_size=args.batch_size)
-        evaluate(model, vgg, dataloader_train, criterion, old_epoch, gram_ix=args.gram_ix, split='Train', save_dict, genre)
-        evaluate(model, vgg, dataloader_val, criterion, old_epoch, gram_ix=args.gram_ix, split='Val', save_dict, genre)
-        evaluate(model, vgg, dataloader_test, criterion, old_epoch, gram_ix=args.gram_ix, split='Test', save_dict, genre)
+        evaluate(model, vgg, dataloader_train, criterion, old_epoch, gram_ix=args.gram_ix,
+                 split='Train', save_dict=save_dict, genres=genres) # , model_eval=False)
+        evaluate(model, vgg, dataloader_val, criterion, old_epoch, gram_ix=args.gram_ix,
+                 split='Val', save_dict=save_dict, genres=genres)
+        evaluate(model, vgg, dataloader_test, criterion, old_epoch, gram_ix=args.gram_ix,
+                 split='Test', save_dict=save_dict, genres=genres)
         # Process saved embeddings and other info
         df = pd.DataFrame(save_dict)
         df.to_csv(f'./embeddings/{embedding_name}', index=False)
-        raise SystemExit(0), 'Embeddings saved to ./embeddings/{embedding_name}'
+        print(f'Embeddings saved to ./embeddings/{embedding_name}')
+        raise SystemExit(0)
 
     for epoch in range(args.epochs):
         train(model, vgg, dataloader_train, criterion, optimizer, old_epoch + epoch, gram_ix=args.gram_ix)
@@ -97,10 +101,11 @@ if __name__ == "__main__":
             model_name = model_name.split('-e=')[0] + '-e={}'.format(old_epoch + epoch)
             PATH = f'./models/{model_name}.pt'
             torch.save({
-                'epoch': args.epochs,
+                'epoch': epoch,
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
             }, PATH)
+            # torch.save(model.state_dict(), PATH[:-3] + '-eval.pt')
 
     model_name = model_name.split('-e=')[0] + '-e={}'.format(old_epoch + args.epochs)
     PATH = f'./models/{model_name}.pt'
@@ -109,3 +114,4 @@ if __name__ == "__main__":
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             }, PATH)
+    # torch.save(model.state_dict(), PATH[:-3] + '-eval.pt')

@@ -39,9 +39,11 @@ parser.add_argument('--load_model', default=False, action='store_true',
                     help="Whether to load previous model")
 parser.add_argument('--load_model_epochs', default=None, type=int,
                     help="Which previous model to load")
+parser.add_argument('--model_name', default=None, type=str,
+                    help="If specified, load this model")
 
 # Evaluation
-parser.add_argument('--eval', default=False, action='store_true'
+parser.add_argument('--eval', default=False, action='store_true',
                     help="If true, load pre-trained model and save embedding vectors")
 
 args = parser.parse_args()
