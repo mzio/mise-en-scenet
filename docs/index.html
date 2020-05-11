@@ -27,16 +27,15 @@
         <div class="row">
           <div class="col-sm-8 col-md-7 py-4">
             <h4 class="text-white">About</h4>
-            <p class="text-muted">Add some information about the album below, the author, or any other background
-              context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off
-              to some social networking sites or contact information.</p>
+            <p class="text-muted">Final project for GenEd 1049: East Asian Cinema, Spring 2020.</p>
+            <p class="text-muted">Michael Zhang, Section TF: Canaan Morse</p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
             <h4 class="text-white">Contact</h4>
             <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Follow on Twitter</a></li>
-              <li><a href="#" class="text-white">Like on Facebook</a></li>
-              <li><a href="#" class="text-white">Email me</a></li>
+              <!-- <li><a href="#" class="text-white">Michael Zhang</a></li> -->
+              <!-- <li><a href="#" class="text-white">Like on Facebook</a></li> -->
+              <!-- <li><a href="#" class="text-white">Email me</a></li> -->
             </ul>
           </div>
         </div>
@@ -45,12 +44,12 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
       <div class="container d-flex justify-content-between">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
             <circle cx="12" cy="13" r="4"></circle>
-          </svg>
-          <strong>Album</strong>
+          </svg> -->
+          <strong>GenEd 1049 - East Asian Cinema</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,19 +63,19 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading">Identifying Mise-en-scène through Machine Learning</h1>
+        <h1 class="jumbotron-heading">Machine Learning Mise-en-scène</h1>
         <p class="lead text-muted">A computer-aided approach to discovering the iconic elements of mise-en-scène across
           film directors and genres.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="#intro" class="btn btn-outline-primary my-2">Take me through step-by-step</a>
+          <a href="#analysis" class="btn btn-outline-secondary my-2">Jump to the analysis</a>
         </p>
       </div>
     </section>
 
     <section class="text-left">
       <div class="container">
-        <h3>Introduction</h3>
+        <h3 id="intro">Introduction</h3>
         <p>
           In film analysis, a scene's <i>mise-en-scène</i> and cinematography - or anything a director can do to help
           stage a scene and how he or she shoots a shot - play a significant role in conveying a larger message beyond
@@ -295,8 +294,8 @@
                 <li><i>To Live</i> (1994), directed by Zhang Yimou</li>
                 <li><i>After Life</i> (1998), directed by Hirokazu Kore-eda</li>
                 <li><i>Ringu</i> (1998), directed by Hideo Nakata</li>
-                <li><i>The Hole</i> (1998), directed by Tsai Miing-liang</li>
-                <li><i>Crouching Tiger Hidden Dragon</i> (2000), directed by Ang Lee</li>
+                <li><i>The Hole</i> (1998), directed by Tsai Ming-liang</li>
+                <li><i>Crouching Tiger, Hidden Dragon</i> (2000), directed by Ang Lee</li>
               </ul>
             </div>
             <div class="col-md-6">
@@ -315,7 +314,7 @@
           into two-minute video clips (the graph above showing the distribution of such clips). Our machine learning
           model only takes images as input, so for each video clip I
           additionally sampled a single video frame uniformly across the clip every five seconds. This lead to a total
-          of 9096 video clips to work with.
+          of 8896 video clips to work with.
         </p>
         <br>
         <div>
@@ -378,178 +377,231 @@
         <br>
         <h3>Visualizing our model results</h3>
         <p>
-          Because this is a film studies class, the details for actually training our model are out of scope. However,
+          After training on one part of the data, our model was able to classify 72% of all frames on the other part.
+          Because this is a
+          film studies class, the details for actually training our model are out of scope. However,
           for those interested the code is availble at <a
-            href="https://github.com/mzio/mise-en-scenet">https://github.com/mzio/mise-en-scenet</a>. However, we can
+            href="https://github.com/mzio/mise-en-scenet">https://github.com/mzio/mise-en-scenet</a>. We can
           still give some indication that our model was able to classify our frames correctly. To determine whether a
           certain frame was directed by someone or another, the model essentially
           learns to represent each frame in a specific manner, where ideally frames shot by the same director end up
-          closer to each other or in clusters.
+          closer to each other or in clusters. As can be seen in the image below, (which is a <a
+            href="https://distill.pub/2016/misread-tsne/">T-SNE plot</a> of our representations), this seems to be the
+          case! Color is used to denote a director.
         </p>
-    </section>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/embeddings-tsne.png" class="figure-img img-fluid rounded"
+                alt="Distribution of videos by film">
+              <figcaption class="figure-caption" style="text-align: center;">
+                Representation of each of our frames according to our model. For a more interactive visualization,
+                scroll to the end or click <a href="#interactive-viz">here</a>.
+              </figcaption>
+              <!-- <iframe
+                src="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/mzio/1948c2b41f9703246e522076587b04d1/raw/e5da8248e6fecfc20a82db4e4e82484df42f57d2/template_projector_config.json"></iframe> -->
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h3 id="analysis">Mise-en-scène and cinematography analysis with the most iconic clips</h3>
+        <br>
+        <p>
+          We now analyze the clip most easily predicted by our model as belonging to the right director for each film.
+          Although it is hard to claim that these clips definitively characterize a film or showcase a director's
+          exclusive stylistic choices, there are some interesting recognizable connections between what the
+          model picks up as iconic and our own understanding through mise-en-scène.
+        </p>
+        <br>
+        <h4 style="text-align: center;">After Life</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/scene-after_life-007.gif" class="figure-img img-fluid rounded"
+                alt="After Life iconic clip">
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <p>
+          Here Kore-eda's film depicts the interviews that the recently dead undergo to help re-live their best
+          memories. The clip depicts a medium shot with natural low-key lighting and rather dull tones that go along
+          with arguably the most recognizable sequence of shots in the entire film. There isn't much to draw the eye,
+          signifying some sort of plainness that goes along with many of the interviewee's best memories. However
+          because
+          everything else in the shot is also so dull, as an audience we can still appreciate their wishes with
+          the focus drawn entirely on to the recently dead's recollection.
+        </p>
+        <br>
+        <h4 style="text-align: center;">Chungking Express</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/scene-chungking_express-001.gif" class="figure-img img-fluid rounded"
+                alt="Chungking Express iconic clip">
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <p>
+          We're greeted with another easily recognizable clip for Wong's <i>Chungking Express</i>. The rapid camera
+          movement depicts a flurry of disordered activity as the cop breaks into a chase. It's unclear what exactly is
+          going on here, and plot-wise we have a chase scene that never really gets resolved; the details of the context
+          behind this scene are blurry, just like how it is shot. The scene does feel iconic of at least the first half
+          of Wong's film: entirely shot a night, slightly seedy, and action without a clear background or resolution.
+        </p>
+        <br>
+        <h4 style="text-align: center;">Crouching Tiger, Hidden Dragon</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/scene-crouching_tiger_hidden_dragon-027.gif"
+                class="figure-img img-fluid rounded" alt="Crouching Tiger, Hidden Dragon iconic clip">
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <p>
+          Here Ang Lee treats us (and the computer) to another action-packed clip that's dominated by a dizzying focus
+          on Lo the desert bandit. The medium shot lets us focus in on Lo as he charges forward, but the background is
+          an entire horizontal blur. The activity is similar to the previous shot in <i>Chungking Express</i>, but
+          elements that might distinguish these scene include a more focused tracking shot that gallops with Lo and a
+          more homogenous color scheme that takes in more of the natural surroundings.
+        </p>
+        <br>
+        <h4 style="text-align: center;">Grave of the Fireflies</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/scene-grave_of_the_fireflies-027.gif" class="figure-img img-fluid rounded"
+                alt="Grave of the Fireflies iconic clip">
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <p>
+          To me, this clip in Takahata's <i>Grave of the Fireflies</i> was an interesting choice because it seems less
+          immediately memorable or representative of the larger film. The camera focuses on Seita in a snug medium wide
+          shot that tracks him as he rolls towards an embrace with Setsuko. We can see that they are clearly in a dark
+          environment, but there's a clear contrast between Seita starting in the dark and Setsuko clearly illuminated
+          by
+          some off-screen upper light source. Seita's body accordingly becomes a bit more well-defined as he rolls
+          toward
+          the light. Light is also present through the sprinkling of fireflies throughout the scene, and in a previous
+          scene the siblings' joy at seeing the fireflies suggest that they as a source of light provide some form of
+          hope distracting them from their situation.
+        </p>
+        <br>
+        <h4 style="text-align: center;">I Was Born, But...</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 "></div>
+            <div class="col-sm-6 ">
+              <img src="./assets/images/scene-i_was_born_but-013.gif" class="figure-img img-fluid rounded"
+                alt="I Was Born, But... iconic clip">
+            </div>
+            <div class="col-sm-3 "></div>
+          </div>
+        </div>
+        <br>
+        <p>
+          The revolving wide shot captures the surrounding larger scenery of the boys, who seem small in the overall
+          frame. While certain shots make it seem like we are right with the characters, the revolving angles here
+          convey an acute sense of more strongly being a spectactor.
+        </p>
+        <br>
+        <h4>Additional most easily identified clips</h4>
+        <br>
+        <p>
+          Each of these depicted clips denote frames that our model was also able to classify easily from each of the
+          remaining films. Just among these examples, we can see unique elements of mise-en-scène that distinguish them
+          from each other. <i>New Woman</i> includes copious close-ups that allow the audience to perceive Ruan
+          Lingyu's anguished emotions. The steady camerawork that captures the flamboyant musical cutscenes in <i>The
+            Hole</i> are also iconic of Tsai Ming-liang's film. <i>Rashomon</i> makes ample use of medium shots facing
+          the focused characters head on, and while these types of shots make up the memorable trial scenes, the dual
+          between the samurai and the bandit offer this plus additional activity that may help it stand out from other
+          front-facing medium shots and close-ups. Finally, it is interesting to see that the narrations in silent films
+          like <i>The Goddess</i> are also picked up on by the model. Although perhaps not our intended target clip, the
+          stark black with a bit of text does stand out against other video clips.
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">New Woman</h5>
+              <img src="./assets/images/scene-new_woman-030.gif" class="figure-img img-fluid rounded"
+                alt="New Woman iconic clip">
+            </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">The Goddess</h5>
+              <img src="./assets/images/scene-goddess-026.gif" class="figure-img img-fluid rounded"
+                alt="The Goddess iconic clip">
+            </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">The Goddess</h5>
+              <img src="./assets/images/scene-goddess-021.gif" class="figure-img img-fluid rounded"
+                alt="The Goddess iconic clip">
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">The Hole</h5>
+              <img src="./assets/images/scene-the_hole-032.gif" class="figure-img img-fluid rounded"
+                alt="The Hole iconic clip">
+            </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">The Housemaid</h5>
+              <img src="./assets/images/scene-the_housemaid-051.gif" class="figure-img img-fluid rounded"
+                alt="The Housemaid iconic clip">
+            </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">The Wedding Banquet</h5>
+              <img src="./assets/images/scene-the_wedding_banquet-005.gif" class="figure-img img-fluid rounded"
+                alt="The Wedding Banquet iconic clip">
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">To Live</h5>
+              <img src="./assets/images/scene-to_live-047.gif" class="figure-img img-fluid rounded"
+                alt="To Live iconic clip">
             </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">Rashomon</h5>
+              <img src="./assets/images/scene-rashomon-034.gif" class="figure-img img-fluid rounded"
+                alt="Rashomon iconic clip">
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            <div class="col-sm-4 ">
+              <h5 style="text-align: center;">Ringu</h5>
+              <img src="./assets/images/scene-ringu-023.gif" class="figure-img img-fluid rounded"
+                alt="Ringu iconic clip">
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <br>
+        <hr>
+        <br>
+        <h3 id="interactive-viz">Interactive model representation visualization</h3>
+        <br>
+        <div class="iframe-container">
+          <iframe
+            src="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/mzio/1948c2b41f9703246e522076587b04d1/raw/e5da8248e6fecfc20a82db4e4e82484df42f57d2/template_projector_config.json"
+            allowfullscreen></iframe>
+        </div>
+    </section>
 
   </main>
 
@@ -558,9 +610,9 @@
       <p class="float-right">
         <a href="#">Back to top</a>
       </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting
-          started guide</a>.</p>
+      <p>Made by Michael Zhang with Bootstrap and the Album template. </p>
+      <!-- <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting
+          started guide</a>.</p> -->
     </div>
   </footer>
 

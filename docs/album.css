@@ -42,26 +42,21 @@ footer p {
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
 
-/* .carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  border: 1px solid black;
-  background-image: none;
+.iframe-container {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+}
+ 
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
 }
 
-.carousel-control-next-icon:after
-{
-  /* content: '>'; */
-  font-size: 55px;
-  color: black;
+html {
+  scroll-behavior: smooth;
 }
-
-.carousel-control-prev-icon:after {
-  /* content: '<'; */
-  font-size: 55px;
-  color: black;
-} */
